@@ -1,64 +1,134 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+# Project Title
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Briefly describe the purpose of the project.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+I have completed the task based on your instructions. Here's a summary of what I used:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Framework**: Laravel (MVC) in PHP
+- **Database**: MySQL
+- **Package**: Lighthouse
 
-## Learning Laravel
+I have also attached a demo video and included the GitHub repository with the source code. I’m looking forward to your feedback.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+To create a `README.md` file for your GitHub repository that includes GraphQL queries and mutations, along with images, here's a template you can follow:
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
+## Table of Contents
+- [Queries](#queries)
+- [Mutations](#mutations)
+- [Images](#images)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## Queries
 
-## Contributing
+### Fetch Users
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+This query fetches users with pagination. It retrieves the first 5 users on the second page, along with pagination information.
 
-## Code of Conduct
+```graphql
+{
+  users(first: 5, page: 2) {
+    data {
+      name
+      id
+      email
+    }
+    paginatorInfo {
+      currentPage
+      lastPage
+      hasMorePages
+      lastItem
+      total
+    }
+  }
+}
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Response Example:
+```json
+{
+  "data": {
+    "users": {
+      "data": [
+        {
+          "name": "John Doe",
+          "id": 1,
+          "email": "john@example.com"
+        },
+        {
+          "name": "Jane Smith",
+          "id": 2,
+          "email": "jane@example.com"
+        }
+      ],
+      "paginatorInfo": {
+        "currentPage": 2,
+        "lastPage": 3,
+        "hasMorePages": true,
+        "lastItem": 10,
+        "total": 15
+      }
+    }
+  }
+}
+```
 
-## Security Vulnerabilities
+## Mutations
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Create a New User
 
-## License
+This mutation creates a new user.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```graphql
+mutation {
+  createUser(name: "John Doe", email: "john@example.com", password: "secret") {
+    id
+    name
+    email
+  }
+}
+```
+
+### Update a User
+
+This mutation updates an existing user's details.
+
+```graphql
+mutation {
+  updateUser(name: "Sathis", email: "sathish@gopi.com", id: 11) {
+    id
+    name
+    email
+  }
+}
+```
+
+### Delete a User
+
+This mutation deletes a user by ID.
+
+```graphql
+mutation {
+  deleteUser(id: 6) {
+    id
+  }
+}
+```
+
+## Images
+
+
+### Screenshot 1
+![Screenshot 1](img/query_user.png)
+
+### Screenshot 1
+![Screenshot 2](img/create_user.png)
+
+### Screenshot 1
+![Screenshot 2](img/delete_user.png)
+
